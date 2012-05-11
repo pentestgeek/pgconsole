@@ -4,6 +4,12 @@ pgconsole is a work an open source web applicaiton assessment framework.
 It is also a work in progress.  
 
 
+---require gems-------
+nokogiri (1.5.0)
+mechanize (2.4)
+
+
+
 -------------------
 Lead developer/s
 ----------------------
