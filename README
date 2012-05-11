@@ -20,6 +20,11 @@ R3dy - royce.e.davis@gmail.com
 TO DO
 -------------
 Finish writing Sitemap generateion functionality
+Build module to test for XSS
+Build module to test fo SQLi
+Build module to grab HTTP Methods
+Build module to bruteforce directories
+Add databse support
 Build more modules!!!
 Take over the world, Muahahahaha!
 
