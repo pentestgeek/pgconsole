@@ -1,0 +1,30 @@
+####### www.pentestgeek.com ######################
+##################################################
+pgconsole is a work an open source web applicaiton assessment framework.
+It is also a work in progress.  
+
+
+-------------------
+Lead developer/s
+----------------------
+R3dy - royce.e.davis@gmail.com
+
+
+-------------
+TO DO
+-------------
+LOTS!!!
+
+
+
+------------
+Guide
+----------
+To run:
+./pgconsole
+
+-Type 'help' for a list of options.
+-To spider a host, type 'spider' then provide a URL
+  NOTE: the url must be a full path 'http://www.pentestgeek.com'
+
+
