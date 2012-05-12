@@ -3,18 +3,15 @@ require 'nokogiri'
 require 'mechanize'
 
 class Spider
-
   
   # Define class variables and accessor methods
   @@initial_urls = Array.new
   @@visited = Array.new
   attr_accessor :host, :maxurls, :agent, :domain, :visited
-  
-  
+    
   def get_visited
     return @@visited
   end
-  
   
   def initialize(host, maxurls=nil)
     # when instance is instantiated define host value, maxurls if provided and build a new Mechanize agent object
@@ -25,8 +22,7 @@ class Spider
     self.agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     self.maxurls = maxurls
   end
-  
-  
+    
   def crawl!(dif_page=nil)
     # This method can take a specific page, otherwise it grabs the self.host and starts the crawl process
     # The get_links method is called by this method which builds the initial list of URLs to start crawling
@@ -42,8 +38,7 @@ class Spider
     end
     generate_sitemap(@@visited)
   end
-  
-  
+    
   def get_links(page)
     puts "[.] Crawling..."
     page.links.each do |link|
@@ -62,8 +57,7 @@ class Spider
       end
     end
   end
-  
-  
+    
   def add_link(link)
     puts "[.] Found: #{link.uri.to_s}"
     self.visited << link.uri.to_s
@@ -77,8 +71,7 @@ class Spider
       return true
     end
   end
-  
-  
+    
   def generate_sitemap(vlinks)
     # After the crawler is finished with the page it passes the urls to this method
     # Which will generate a Sitemap of the target site
@@ -88,8 +81,7 @@ class Spider
     #return sitemap
     return "This is a Sitemap"
   end
-  
-  
+    
 end
 
 

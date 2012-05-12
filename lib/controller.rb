@@ -12,7 +12,6 @@ def console_loop
   end
 end
 
-
 def run_command(command)
   case command
   when 'quit'
@@ -25,7 +24,6 @@ def run_command(command)
     puts "[-] Invalid Option, try 'help'"
   end
 end
-
 
 def launch_spider_module
   print "[.] Target URL:"
@@ -40,7 +38,6 @@ def launch_spider_module
   end
   # Once finished build a sitemap
 end
-
 
 def help
   help_string = "\n\n  --Commands--"
