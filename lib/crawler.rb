@@ -8,7 +8,7 @@ class Spider
   # Define class variables and accessor methods
   @@initial_urls = Array.new
   @@visited = Array.new
-  attr_accessor :host, :maxurls, :agent
+  attr_accessor :host, :maxurls, :agent, :domain, :visited
   
   
   def get_visited
@@ -18,7 +18,9 @@ class Spider
   
   def initialize(host, maxurls=nil)
     # when instance is instantiated define host value, maxurls if provided and build a new Mechanize agent object
+    self.visited = Array.new
     self.host = host
+    self.domain = self.host.split(".")[1] + "." + self.host.split(".")[2]
     self.agent = Mechanize.new
     self.agent.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     self.maxurls = maxurls
@@ -38,6 +40,7 @@ class Spider
         get_links(page)
       }
     end
+    generate_sitemap(@@visited)
   end
   
   
@@ -47,11 +50,12 @@ class Spider
       # This loops starts clicking on every link found
       begin
         # It won't click on links that it's already visited or links with broken uris like '#'
-        unless self.agent.visited?(link) || link.uri.to_s == '#'
-          link.click
-          # After a link has been followed it's added to the visited array
-          @@visited << link.uri.to_s
-          puts "[.] Found: #{link.uri.to_s}"
+        unless self.visited.include?(link.uri.to_s) || link.uri.to_s == '#' 
+          if isclean(link)
+            # After a link has been followed it's added to the visited array
+            @@visited << link.uri.to_s
+            add_link(link)
+          end
         end
       rescue
         next
@@ -60,12 +64,27 @@ class Spider
   end
   
   
-  def generate_sitemap
+  def add_link(link)
+    puts "[.] Found: #{link.uri.to_s}"
+    self.visited << link.uri.to_s
+  end
+  
+  def isclean(link)
+    # Check to make sure link doesn't point to a website other then the specified target
+    if link.uri.to_s.include?(".") && !link.uri.to_s.include?(self.domain)
+      return false
+    else
+      return true
+    end
+  end
+  
+  
+  def generate_sitemap(vlinks)
     # After the crawler is finished with the page it passes the urls to this method
     # Which will generate a Sitemap of the target site
-    puts "[.] Processed #{self.get_visited.length} links.\r\n"
+    puts "[.] Processed #{vlinks.length} links.\r\n"
     puts "[.] Generateing new Sitemap...\r\n"
-    sitemap = Sitemap.new(@@visited)
+    sitemap = Sitemap.new(vlinks)
     #return sitemap
     return "This is a Sitemap"
   end

@@ -34,7 +34,7 @@ def launch_spider_module
   if target.to_s.include?"http:\/\/www."
     spider = Spider.new(target)
     spider.crawl!
-    new_sitemap = spider.generate_sitemap
+    #new_sitemap = spider.generate_sitemap
   else
     puts "[-] Error: must provide an absolute URL 'http://www...'"
   end
