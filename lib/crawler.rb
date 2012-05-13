@@ -84,7 +84,6 @@ class Spider
     
 end
 
-
 class Sitemap
   # This is where we will define the code used to generate a working
   # sitemap of the specified target
