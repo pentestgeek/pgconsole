@@ -48,7 +48,7 @@ class Target
     puts "[+] Nmap:\r\n"
     puts "------------------------"
     Nmap::Program.scan do |nmap|
-        nmap.verbose = true
+        nmap.verbose = false
         nmap.targets = host
         nmap.ports = [80,443,8080]
         nmap.connect_scan = true
@@ -58,7 +58,7 @@ class Target
 
   def get_methods(host)
     output = ""
-    con = TCPSocket.open("pentestgeek.com", 80)
+    con = TCPSocket.open(self.top, 80)
     con.write("OPTIONS / HTTP/1.0\r\n\r\n")
       while resp = con.gets
         output += resp

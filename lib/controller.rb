@@ -42,7 +42,7 @@ def launch_spider_module
     puts "[-] Error: must provide an absolute URL 'http://www...'"
   end
   # Once finished build a sitemap
-  Host.new(spider.domain, spider.visited)
+  Host.new(spider.domain, spider.visited) unless Host.host_exists(spider.domain)
 end
 
 def clean_url(url)

@@ -17,4 +17,14 @@ class Host
     end
   end
   
+  def self.host_exists(domain)
+    exists = false
+    ObjectSpace.each_object.select{|obj| obj.class == Host}.each do |host|
+      if host.domain = domain
+        exists = true
+      end
+    end
+    return exists
+  end
+  
 end
