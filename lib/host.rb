@@ -11,6 +11,7 @@ class Host
   end
   
   def self.get_hosts
+    # This methods prints out the enumerated hosts
     puts "[+] Hosts\r\n"
     ObjectSpace.each_object.select{|obj| obj.class == Host}.each do |host|
       puts "\t[Domain:] " + host.domain.to_s + "\t|\t" + "[Links:] " + host.links.length.to_s
@@ -18,6 +19,7 @@ class Host
   end
   
   def self.host_exists(domain)
+    # Check if a host already exists before creating a new one
     exists = false
     ObjectSpace.each_object.select{|obj| obj.class == Host}.each do |host|
       if host.domain = domain
