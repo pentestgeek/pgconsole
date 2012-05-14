@@ -1,6 +1,3 @@
-require 'crawler.rb'
-require 'enumerate.rb'
-
 def console_loop
   # This is the main loop that will handle all the commands from the user
   # Like a command shell
@@ -26,6 +23,8 @@ def run_command(command)
     launch_spider_module
   when 'enum'
     enum_webserver
+  when 'hosts'
+    Host.get_hosts
   else
     puts "[-] Invalid Option, try 'help'"
   end
@@ -43,6 +42,7 @@ def launch_spider_module
     puts "[-] Error: must provide an absolute URL 'http://www...'"
   end
   # Once finished build a sitemap
+  Host.new(spider.domain, spider.visited)
 end
 
 def clean_url(url)
@@ -74,6 +74,7 @@ def help
   help_string += "help\t-\tDisplays this help screen\r\n"
   help_string += "spider\t-\tSpiders a specified target website\r\n"
   help_string += "enum\t-\tRuns web enumeration modules against a specified URL\n"
+  help_string += "hosts\t-\tDisplay information about scanned hosts\n"
   help_string += "quit\t-\tExits the applicaiton\r\n"
   help_string += "\n"
   return help_string

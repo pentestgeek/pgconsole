@@ -1,9 +1,5 @@
-require 'rubygems'
-require 'nokogiri'
-require 'mechanize'
-
 class Spider
-  
+
   # Define class variables and accessor methods
   @@initial_urls = Array.new
   @@visited = Array.new
@@ -36,7 +32,7 @@ class Spider
         get_links(page)
       }
     end
-    generate_sitemap(@@visited)
+    generate_sitemap(self.visited)
   end
     
   def get_links(page)
@@ -48,7 +44,6 @@ class Spider
         unless self.visited.include?(link.uri.to_s) || link.uri.to_s == '#' 
           if isclean(link)
             # After a link has been followed it's added to the visited array
-            @@visited << link.uri.to_s
             add_link(link)
           end
         end
