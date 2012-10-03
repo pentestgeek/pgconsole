@@ -25,6 +25,8 @@ def run_command(command)
     enum_webserver
   when 'hosts'
     Host.get_hosts
+  when 'clear'
+    system("clear")
   else
     puts "[-] Invalid Option, try 'help'"
   end
@@ -37,9 +39,10 @@ def launch_spider_module
   if clean_url(target)
     spider = Spider.new(target)
     spider.crawl!
-    #new_sitemap = spider.generate_sitemap
+    new_sitemap = spider.generate_sitemap
   else
     puts "[-] Error: must provide an absolute URL 'http://www...'"
+    console_loop
   end
   # Once finished build a sitemap
   Host.new(spider.domain, spider.visited) unless Host.host_exists(spider.domain)
@@ -64,6 +67,7 @@ def enum_webserver
     target.enumerate!
   else
     puts "[-] Error: must provide an absolute URL 'http://www...'"
+    console_loop
   end  
 end
 
