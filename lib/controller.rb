@@ -39,7 +39,6 @@ def launch_spider_module
   if clean_url(target)
     spider = Spider.new(target)
     spider.crawl!
-    new_sitemap = spider.generate_sitemap
   else
     puts "[-] Error: must provide an absolute URL 'http://www...'"
     console_loop
