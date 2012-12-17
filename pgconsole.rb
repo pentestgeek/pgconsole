@@ -11,6 +11,7 @@ require 'rubygems'
 require 'nokogiri'
 require 'mechanize'
 require 'host'
+require 'anemone'
 
 system("clear")
 console_loop()
