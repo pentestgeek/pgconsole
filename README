@@ -7,14 +7,14 @@ It is also a work in progress.
 ---require gems-------
 nokogiri (1.5.0)
 mechanize (2.4)
-
+anemone
 
 
 -------------------
 Lead developer/s
 ----------------------
 R3dy - royce.e.davis@gmail.com
-
+zeknox - mccann.brandon@gmail.com
 
 -------------
 TO DO
